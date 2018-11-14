@@ -7,6 +7,11 @@ const authRoutes = require('./routes/authRoutes');
 require('./models/User');
 require('./services/passport');
 
+// IMPORTANT!!!
+// DELETE this before production build.
+// Allows use of localhost without SSL for testing of OAuth in development
+require('https').globalAgent.options.rejectUnauthorized = false;
+
 mongoose.connect(
   keys.mongoURI,
   { useNewUrlParser: true }
