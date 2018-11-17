@@ -9,6 +9,10 @@ const authRoutes = require('./routes/authRoutes');
 require('./models/User');
 require('./services/passport');
 
+// Testing only
+// IMPORTANT DELETE BEFORE PUSHING TO PRODUCTION
+require('https').globalAgent.options.rejectUnauthorized = false;
+
 mongoose.connect(
   keys.mongoURI,
   { useNewUrlParser: true }
