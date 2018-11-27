@@ -8,7 +8,7 @@ import validateEmails from '../../utils/validateEmails';
 
 class SurveyForm extends Component {
   renderFields() {
-    return formFields.map(({ label, name }) => {
+    return formFields.map(({ label, name, placeholder }) => {
       return (
         <Field
           key={name}
@@ -16,6 +16,7 @@ class SurveyForm extends Component {
           type="text"
           label={label}
           name={name}
+          placeholder={placeholder}
         />
       );
     });
@@ -26,12 +27,12 @@ class SurveyForm extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
           {this.renderFields()}
-          <Link to="/surveys" className="red btn-flat white-text">
+          <Link to="/surveys" className="red white-text btn-flat">
             <i className="material-icons left">close</i>
             Cancel
           </Link>
           <button
-            className="blue accent-4 btn-flat right white-text"
+            className="blue accent-4 white-text btn-flat right"
             type="submit"
           >
             Next
@@ -46,7 +47,7 @@ class SurveyForm extends Component {
 function validate(values) {
   const errors = {};
 
-  errors.emails = validateEmails(values.emails || '');
+  errors.recipients = validateEmails(values.recipients || '');
 
   formFields.forEach(({ name, noValueError }) => {
     if (!values[name]) {
